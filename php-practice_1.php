@@ -59,13 +59,11 @@ $Prefecture = ['東京都' => '新宿区', '神奈川県' => '横浜市', '千�
 $Prefecture['北海道'] = '札幌市';
 $Prefecture['沖縄県'] = '那覇市';
 
-$Prefecture = '北海道';
-
 foreach ($Prefecture as $key => $value) {
 if ($key === '北海道' || $key === '沖縄県') {
-  echo $key . 'は関東地方ではありません。';
+  echo $key . "は関東地方ではありません。\n";
 }else  {
-  echo $key.'の県庁所在地は、'.$value. 'です。';
+  echo $key.'の県庁所在地は、'.$value. "です。\n";
 }}
 
 
