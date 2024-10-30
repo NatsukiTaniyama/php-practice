@@ -33,7 +33,7 @@ $personalInfos = [
   ],
 ];
 
-echo $personalInfos[ 1 ][ 'name' ].'の電話番号は'.$personalInfos[ 1 ][ 'tel' ].'です。';
+echo $personalInfos[1]['name'].'の電話番号は'.$personalInfos[1]['tel'].'です。';
 
 //問2
 $i = 0;
@@ -43,11 +43,22 @@ $i += 1;
 echo $i.'番目の'.$personalInfos[$key]['name'].'のメールアドレスは'.$personalInfos[$key]['mail'].'で、電話番号は'.$personalInfos[$key]['tel']."です。\n";
 }
 
-//問3
-$ageList = [25, 30, 18];
+foreach($personalInfos as $key => $value) {
+  echo ($key + 1).'番目の'.$personalInfos[$key]['name'].'のメールアドレスは'.$personalInfos[$key]['mail'].'で、電話番号は'.$personalInfos[$key]['tel']."です。\n";
+  }
 
+//問3
+
+//回答①
+$ageList = [25, 30, 18];
 foreach($personalInfos as $key => $value){
   $personalInfos[$key] += array("age" => $ageList[$key]);
+}
+
+//回答②
+$ageList = [25, 30, 18];
+foreach($personalInfos as $key => $value){
+    $personalInfos[$key]['age'] = $ageList[$key];
 }
 
 
@@ -80,9 +91,11 @@ $Student->lesson();
 // Q4 オブジェクト-2
 class Student
 {
+    // プロパティ
     public $studentId;
     public $studentName;
 
+    // メソッド
     public function __construct($id, $name)
     {
         $this->studentId = $id;
@@ -102,14 +115,41 @@ $yamada->attend('PHP');
 // Q5 定義済みクラス
 
 //問1
-$date = new DateTime('2021-03-02');
+$date = new DateTime('2024-10-09');
 $prev_date = $date->modify('-1 month')->format('Y-m-d');
 echo $prev_date;
 
 //問2
+//回答①
 $day1 = strtotime('1994-04-25');
 $day2 = strtotime('2024-10-09');
 echo 'あの日から'.($day2 - $day1) / (60 * 60 * 24). '日経過しました。';
 
+//回答②
+$day1 = new DateTime('1994-04-25');
+$day2 = new DateTime('2024-10-09');
 
+$diff = $day1->diff($day2)->format('%a');
+echo 'あの日から'.$diff.'日経過しました。';
+
+
+
+//DateTime処理 回答
+class DateTime
+{
+    public $date;
+    public $timezone_type;
+    public $timezone;
+    
+    public function __construct($days, $type, $zone)
+        {
+          $this->date = $days;
+          $this->timezone_type = $type;
+          $this->timezone = $zone;
+        }
+    
+}
+
+$day1 = new DateTime("now", "int", "Asia/Tokyo");
+var_dump($day1);
 ?>
